@@ -23,13 +23,26 @@ const CountersList = () => {
         setCounters(newCounters)
     }
     const onIncrement = (id) => {
-        const newSetCounter = counters
-        counters[id].value = counters[id].value + 1
-        setCounters([...counters]);
+        setCounters(
+            counters.map((item) => {
+                if (item.id === id) {
+                    return { ...item, value: item.value + 1 };
+                } else {
+                return item;
+                }
+            })
+        );
     }
     const onDecrement = (id) => {
-        counters[id].value = counters[id].value - 1
-        setCounters([...counters])
+        setCounters(
+            counters.map((item) => {
+                if (item.id === id) {
+                    return { ...item, value: item.value - 1 };
+                } else {
+                    return item;
+                }
+            })
+        );
     }
     const handleReset = () => {
         setCounters(initialState)
